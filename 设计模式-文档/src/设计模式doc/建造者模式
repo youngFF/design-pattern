@@ -1,0 +1,53 @@
+建造者模式： Builder
+
+一步一步的构造对象 ，使用多个简单对象一步一步构建成一个复杂对象。 不一定使用第三方类（也就是Builder）来
+构建对象，也可能写成构造链的形式来构建对象。如：
+
+使用第三方Builder创建对象：
+
+    public class Student{
+
+        private int age ;
+        private String name ;
+
+
+        public static class Builder{
+
+            public Builder setName(String name){
+                Student.name = name ;
+                return this ;
+            }
+
+            public Builder setAge(int age){
+                Student.age = age ;
+                return this ;
+            }
+        }
+    }
+
+
+使用构造链的方式构建对象：
+        public class Student {
+            private int age ;
+            private String name ;
+
+
+
+            public Student setAge(int age ){
+                this.age = age ;
+                return this ;
+            }
+
+
+            public Student setName(String name){
+                this.name = name ;
+                return this ;
+            }
+        }
+
+        -----------------> Jsoup中的HttpConnection对象就采取了这样的方式。
+
+
+        适用场景：
+                当可以灵活配置对象的时候，比如Jsoup的HttpConnection，使用构造链可以灵活配置请求头中
+                的请求参数。
